@@ -4,16 +4,26 @@
 
 // ── Mock Data ────────────────────────────────
 const mockInternships = [
-  { id:1, title:"Frontend Developer Intern", company:"TechFlow", logo:"TF", transparency:"green", matchScore:92, urgencyDays:2, tags:["React","JavaScript","Remote"], reqSkills:["React","CSS","TypeScript","Figma"], stipend:"₹25,000/mo", location:"Remote", probability:89, scamReports:0, responseRate:94, jd:"Build modern web interfaces using React. Collaborate with design and backend teams to create seamless user experiences. Work on real production features shipped to thousands of users.", graduates:120, openings:3 },
-  { id:2, title:"Data Science Intern", company:"Analytica", logo:"AN", transparency:"yellow", matchScore:78, urgencyDays:5, tags:["Python","SQL","Hybrid"], reqSkills:["Python","Machine Learning","SQL","Tableau"], stipend:"₹18,000/mo", location:"Hybrid – Bangalore", probability:65, scamReports:2, responseRate:58, jd:"Analyze large datasets to extract business insights. Build predictive models using scikit-learn and TensorFlow. Present findings to stakeholders.", graduates:80, openings:5 },
-  { id:3, title:"UX Design Intern", company:"Creativ", logo:"CR", transparency:"red", matchScore:45, urgencyDays:14, tags:["Figma","UI/UX","On-site"], reqSkills:["Figma","User Research","Prototyping","Sketch"], stipend:"Unpaid", location:"On-site – Mumbai", probability:30, scamReports:15, responseRate:22, jd:"Design user interfaces and conduct usability testing. Create wireframes, prototypes, and design specs for mobile and web applications.", graduates:40, openings:2 },
-  { id:4, title:"Backend Engineer Intern", company:"CloudBase", logo:"CB", transparency:"green", matchScore:85, urgencyDays:7, tags:["Node.js","MongoDB","Remote"], reqSkills:["Node.js","REST APIs","MongoDB","Docker"], stipend:"₹22,000/mo", location:"Remote", probability:81, scamReports:0, responseRate:88, jd:"Design and build scalable REST APIs. Work on microservices architecture and cloud deployments using AWS and Docker. Code review participation.", graduates:95, openings:4 },
-  { id:5, title:"AI/ML Research Intern", company:"NeuraLabs", logo:"NL", transparency:"green", matchScore:70, urgencyDays:10, tags:["Python","Deep Learning","Remote"], reqSkills:["Python","TensorFlow","Research Writing","Linear Algebra"], stipend:"₹30,000/mo", location:"Remote", probability:72, scamReports:0, responseRate:91, jd:"Assist senior researchers in building and evaluating deep learning models. Contribute to published research papers and open-source ML projects.", graduates:55, openings:2 },
-  { id:6, title:"Product Management Intern", company:"Startify", logo:"ST", transparency:"yellow", matchScore:60, urgencyDays:3, tags:["Strategy","Agile","Hybrid"], reqSkills:["Product Roadmap","Agile","Data Analysis","Communication"], stipend:"₹15,000/mo", location:"Hybrid – Pune", probability:55, scamReports:4, responseRate:47, jd:"Own the product roadmap for a key feature area. Work closely with engineering, design, and marketing. Conduct user interviews and analyse product metrics.", graduates:30, openings:1 }
+  { id:1, title:"Frontend Developer Intern", company:"TechFlow", logo:"TF", transparency:"green", matchScore:92, urgencyDays:2, tags:["React","JavaScript","Remote"], reqSkills:["React","CSS","TypeScript","Figma"], stipend:"₹25,000/mo", stipendAmount:25000, location:"Remote", type:"remote", partTime:false, duration:"2 months", probability:89, scamReports:0, responseRate:94, jd:"Build modern web interfaces using React. Collaborate with design and backend teams to create seamless user experiences. Work on real production features shipped to thousands of users.", graduates:120, openings:3 },
+  { id:2, title:"Data Science Intern", company:"Analytica", logo:"AN", transparency:"yellow", matchScore:78, urgencyDays:5, tags:["Python","SQL","Hybrid"], reqSkills:["Python","Machine Learning","SQL","Tableau"], stipend:"₹18,000/mo", stipendAmount:18000, location:"Hybrid – Bangalore", type:"hybrid", partTime:true, duration:"3 months", probability:65, scamReports:2, responseRate:58, jd:"Analyze large datasets to extract business insights. Build predictive models using scikit-learn and TensorFlow. Present findings to stakeholders.", graduates:80, openings:5 },
+  { id:3, title:"UX Design Intern", company:"Creativ", logo:"CR", transparency:"red", matchScore:45, urgencyDays:14, tags:["Figma","UI/UX","On-site"], reqSkills:["Figma","User Research","Prototyping","Sketch"], stipend:"Unpaid", stipendAmount:0, location:"On-site – Mumbai", type:"onsite", partTime:false, duration:"6 months", probability:30, scamReports:15, responseRate:22, jd:"Design user interfaces and conduct usability testing. Create wireframes, prototypes, and design specs for mobile and web applications.", graduates:40, openings:2 },
+  { id:4, title:"Backend Engineer Intern", company:"CloudBase", logo:"CB", transparency:"green", matchScore:85, urgencyDays:7, tags:["Node.js","MongoDB","Remote"], reqSkills:["Node.js","REST APIs","MongoDB","Docker"], stipend:"₹22,000/mo", stipendAmount:22000, location:"Remote", type:"remote", partTime:false, duration:"3 months", probability:81, scamReports:0, responseRate:88, jd:"Design and build scalable REST APIs. Work on microservices architecture and cloud deployments using AWS and Docker. Code review participation.", graduates:95, openings:4 },
+  { id:5, title:"AI/ML Research Intern", company:"NeuraLabs", logo:"NL", transparency:"green", matchScore:70, urgencyDays:10, tags:["Python","Deep Learning","Remote"], reqSkills:["Python","TensorFlow","Research Writing","Linear Algebra"], stipend:"₹30,000/mo", stipendAmount:30000, location:"Remote", type:"remote", partTime:true, duration:"4 months", probability:72, scamReports:0, responseRate:91, jd:"Assist senior researchers in building and evaluating deep learning models. Contribute to published research papers and open-source ML projects.", graduates:55, openings:2 },
+  { id:6, title:"Product Management Intern", company:"Startify", logo:"ST", transparency:"yellow", matchScore:60, urgencyDays:3, tags:["Strategy","Agile","Hybrid"], reqSkills:["Product Roadmap","Agile","Data Analysis","Communication"], stipend:"₹15,000/mo", stipendAmount:15000, location:"Hybrid – Pune", type:"hybrid", partTime:true, duration:"2 months", probability:55, scamReports:4, responseRate:47, jd:"Own the product roadmap for a key feature area. Work closely with engineering, design, and marketing. Conduct user interviews and analyse product metrics.", graduates:30, openings:1 }
 ];
 
-const userSkills = ["React","JavaScript","CSS","Python","SQL","Git"];
-const userSkillLevels = { React:80, JavaScript:90, CSS:75, Python:60, SQL:55, Git:85 };
+// Mutable user profile state
+let userProfile = {
+  name: "Aditya Chauhan",
+  college: "NIET Business School",
+  branch: "B.Tech CSE",
+  year: "3rd Year",
+  resumeScore: 85,
+  skills: { React:80, JavaScript:90, CSS:75, Python:60, SQL:55, Git:85 }
+};
+// Shorthand aliases (kept in sync after save)
+let userSkills = Object.keys(userProfile.skills);
+let userSkillLevels = userProfile.skills;
 
 const mockKanban = {
   applied: [
@@ -49,6 +59,8 @@ let currentInternshipId = null;
 let currentCompanyId = null;
 let ghostStep = 1;
 let activePrepTab = "questions";
+let activeFilters = { type: 'all', partTime: false, stipend: false, duration: '', skills: [] };
+let skillsDropdownOpen = false;
 
 // ── Router ────────────────────────────────────
 function initApp() {
@@ -62,6 +74,18 @@ function initApp() {
   document.getElementById('modal-close-btn').addEventListener('click', closeModal);
   document.getElementById('apply-modal').addEventListener('click', e => {
     if (e.target === document.getElementById('apply-modal')) closeModal();
+  });
+
+  // Close filter dropdowns when clicking outside
+  document.addEventListener('click', e => {
+    if (!e.target.closest('#duration-dropdown-wrapper')) {
+      const dd = document.getElementById('duration-dropdown');
+      if (dd) dd.classList.remove('open');
+    }
+    if (!e.target.closest('#skills-dropdown-wrapper')) {
+      const sd = document.getElementById('skills-dropdown');
+      if (sd) sd.classList.remove('open');
+    }
   });
 
   navigate('home');
@@ -113,7 +137,7 @@ function renderHome(container) {
           <h1>Discovery Feed 🔍</h1>
           <p>AI-matched internships based on your skills and profile.</p>
         </div>
-        <button class="btn-primary" onclick="navigate('profile')"><i class="ph ph-sparkle"></i>Update Profile</button>
+        <button class="btn-primary" onclick="openProfileModal()"><i class="ph ph-sparkle"></i>Update Profile</button>
       </div>
 
       <div class="stats-row">
@@ -123,15 +147,44 @@ function renderHome(container) {
         <div class="stat-card"><div class="stat-icon red"><i class="ph-fill ph-ghost"></i></div><div class="stat-value">1</div><div class="stat-label">Ghost Alert</div></div>
       </div>
 
-      <div class="filters-row">
-        <div class="search-bar-wrapper" style="flex:1;min-width:200px;">
-          <i class="ph ph-magnifying-glass"></i>
-          <input class="search-input" id="search-input" type="text" placeholder="Search roles, companies, skills…" oninput="filterFeed()">
+      <div class="filters-section">
+        <div class="filters-row">
+          <div class="search-bar-wrapper" style="flex:1;min-width:200px;">
+            <i class="ph ph-magnifying-glass"></i>
+            <input class="search-input" id="search-input" type="text" placeholder="Search roles, companies, skills…" oninput="applyAllFilters()">
+          </div>
+          <button class="filter-chip active" data-filter="all" onclick="setFilter(this,'all')"><i class="ph ph-squares-four"></i>All</button>
+          <button class="filter-chip" data-filter="green" onclick="setFilter(this,'green')"><i class="ph ph-check-circle"></i>Verified</button>
+          <button class="filter-chip" data-filter="high" onclick="setFilter(this,'high')"><i class="ph ph-trend-up"></i>High Match</button>
         </div>
-        <button class="filter-chip active" data-filter="all" onclick="setFilter(this,'all')"><i class="ph ph-squares-four"></i>All</button>
-        <button class="filter-chip" data-filter="remote" onclick="setFilter(this,'remote')"><i class="ph ph-globe"></i>Remote</button>
-        <button class="filter-chip" data-filter="green" onclick="setFilter(this,'green')"><i class="ph ph-check-circle"></i>Verified</button>
-        <button class="filter-chip" data-filter="high" onclick="setFilter(this,'high')"><i class="ph ph-trend-up"></i>High Match</button>
+        <div class="advanced-filters-row">
+          <button class="filter-chip ${activeFilters.type==='remote'?'active':''}" onclick="toggleTypeFilter(this,'remote')"><i class="ph ph-globe"></i>Remote</button>
+          <button class="filter-chip ${activeFilters.partTime?'active':''}" onclick="togglePartTimeFilter(this)"><i class="ph ph-hourglass-medium"></i>Part-time</button>
+          <button class="filter-chip ${activeFilters.stipend?'active':''}" onclick="toggleStipendFilter(this)"><i class="ph ph-currency-inr"></i>Paid Only</button>
+          <div class="filter-dropdown-wrapper" id="duration-dropdown-wrapper">
+            <button class="filter-chip ${activeFilters.duration?'active':''}" onclick="toggleDurationDropdown()"><i class="ph ph-calendar-blank"></i>Duration${activeFilters.duration ? ': '+activeFilters.duration : ''}<i class="ph ph-caret-down" style="margin-left:2px;font-size:0.7rem;"></i></button>
+            <div class="filter-dropdown" id="duration-dropdown">
+              <div class="filter-dropdown-item" onclick="setDuration('')">Any Duration</div>
+              <div class="filter-dropdown-item" onclick="setDuration('2 months')">2 Months</div>
+              <div class="filter-dropdown-item" onclick="setDuration('3 months')">3 Months</div>
+              <div class="filter-dropdown-item" onclick="setDuration('4 months')">4 Months</div>
+              <div class="filter-dropdown-item" onclick="setDuration('6 months')">6 Months</div>
+            </div>
+          </div>
+          <div class="filter-dropdown-wrapper" id="skills-dropdown-wrapper">
+            <button class="filter-chip ${activeFilters.skills.length>0?'active':''}" onclick="toggleSkillsDropdown()"><i class="ph ph-code"></i>Skills${activeFilters.skills.length>0?' ('+activeFilters.skills.length+')':''}<i class="ph ph-caret-down" style="margin-left:2px;font-size:0.7rem;"></i></button>
+            <div class="filter-dropdown skills-dropdown" id="skills-dropdown">
+              <div class="skills-dropdown-header">Filter by Skill</div>
+              ${[...new Set(mockInternships.flatMap(j=>j.reqSkills))].map(sk=>`
+                <label class="filter-dropdown-item skill-check-item">
+                  <input type="checkbox" ${activeFilters.skills.includes(sk)?'checked':''} onchange="toggleSkill('${sk}',this.checked)">${sk}
+                </label>
+              `).join('')}
+              <div class="skills-dropdown-clear" onclick="clearSkills()">Clear Skills</div>
+            </div>
+          </div>
+          ${(activeFilters.type!=='all'||activeFilters.partTime||activeFilters.stipend||activeFilters.duration||activeFilters.skills.length>0)?'<button class="filter-chip clear-filters" onclick="clearAdvancedFilters()"><i class="ph ph-x-circle"></i>Clear Filters</button>':''}
+        </div>
       </div>
 
       <div class="feed-grid" id="feed-grid">${mockInternships.map(j => jobCardHtml(j)).join('')}</div>
@@ -139,52 +192,177 @@ function renderHome(container) {
 }
 
 function jobCardHtml(job) {
-  const urgency = job.urgencyDays <= 3 ? `<span class="badge red"><i class="ph ph-clock"></i>${job.urgencyDays}d left</span>` : `<span class="badge gray"><i class="ph ph-calendar"></i>${job.urgencyDays}d left</span>`;
-  const scam = job.scamReports > 5 ? `<div class="scam-warning"><i class="ph ph-warning"></i>${job.scamReports} ghost/scam reports from students</div>` : '';
+  const urgency = job.urgencyDays <= 3
+    ? `<span class="badge red"><i class="ph ph-clock"></i>${job.urgencyDays}d left</span>`
+    : `<span class="badge gray"><i class="ph ph-calendar"></i>${job.urgencyDays}d left</span>`;
+  const scam = job.scamReports > 5
+    ? `<div class="scam-warning"><i class="ph ph-warning"></i>${job.scamReports} ghost/scam reports from students</div>`
+    : '';
   return `
     <div class="card job-card" onclick="navigate('detail',${job.id})">
-      <div class="job-card-header">
-        <div>
-          <div class="company-logo">${job.logo}</div>
-          <div class="job-title">${job.title}</div>
-          <div class="job-company">${job.company} · ${job.location}</div>
+      <div style="display:flex;gap:1rem;align-items:flex-start;">
+        <!-- Logo -->
+        <div class="company-logo" style="margin-top:2px;">${job.logo}</div>
+
+        <!-- Main Info -->
+        <div style="flex:1;min-width:0;">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:0.75rem;margin-bottom:0.3rem;">
+            <div>
+              <div class="job-title">${job.title}</div>
+              <div class="job-company">${job.company}</div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.4rem;flex-shrink:0;">
+              <div class="match-score-badge">${job.matchScore}%<small>Match</small></div>
+            </div>
+          </div>
+
+          <!-- Meta Row — Internshala style -->
+          <div class="job-meta" style="margin:0.45rem 0 0.5rem;">
+            <span class="job-meta-item"><i class="ph ph-currency-inr"></i>${job.stipend}</span>
+            <span class="job-meta-divider">·</span>
+            <span class="job-meta-item"><i class="ph ph-map-pin"></i>${job.location}</span>
+            <span class="job-meta-divider">·</span>
+            <span class="job-meta-item"><i class="ph ph-clock"></i>${job.duration}</span>
+            ${job.partTime ? `<span class="job-meta-divider">·</span><span class="job-meta-item"><i class="ph ph-hourglass-medium"></i>Part-time</span>` : ''}
+          </div>
+
+          <!-- Tags + transparency -->
+          <div style="display:flex;gap:0.4rem;flex-wrap:wrap;align-items:center;margin-bottom:0.6rem;">
+            ${tbadge(job.transparency)}
+            ${urgency}
+            ${job.tags.map(t => `<span class="badge blue">${t}</span>`).join('')}
+          </div>
+
+          <!-- Probability bar -->
+          <div class="probability-bar-wrap" style="margin-top:0;">
+            <div class="probability-bar-label"><span>Selection Probability</span><span>${job.probability}%</span></div>
+            <div class="probability-bar-bg"><div class="probability-bar-fill" style="width:${job.probability}%"></div></div>
+          </div>
+
+          ${scam}
         </div>
-        <div class="match-score-badge">${job.matchScore}%<small>Match</small></div>
       </div>
-      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:0.75rem;">
-        ${tbadge(job.transparency)}
-        ${urgency}
+
+      <!-- Footer: Skills + Quick Apply -->
+      <div class="job-footer" style="margin-top:0.75rem;">
+        <div style="display:flex;gap:0.35rem;flex-wrap:wrap;align-items:center;">
+          ${job.reqSkills.slice(0,3).map(s => `<span class="badge gray">${s}</span>`).join('')}
+          ${job.reqSkills.length > 3 ? `<span class="badge gray">+${job.reqSkills.length-3}</span>` : ''}
+        </div>
+        <button class="quick-apply-btn" onclick="event.stopPropagation();openModal('${job.title}')">
+          <i class="ph ph-paper-plane-tilt"></i>Quick Apply
+        </button>
       </div>
-      <div class="probability-bar-wrap">
-        <div class="probability-bar-label"><span>Selection Probability</span><span>${job.probability}%</span></div>
-        <div class="probability-bar-bg"><div class="probability-bar-fill" style="width:${job.probability}%"></div></div>
-      </div>
-      ${scam}
-      <div class="job-meta">${job.tags.map(t => `<span class="badge blue">${t}</span>`).join('')}<span class="badge gray">${job.stipend}</span></div>
     </div>`;
 }
 
 function setFilter(el, filter) {
-  document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+  // Only reset the top-row chips (not advanced filters)
+  document.querySelectorAll('.filters-row .filter-chip').forEach(c => c.classList.remove('active'));
   el.classList.add('active');
-  const grid = document.getElementById('feed-grid');
-  if (!grid) return;
-  let filtered = mockInternships;
-  if (filter === 'remote') filtered = filtered.filter(j => j.tags.includes('Remote'));
-  if (filter === 'green') filtered = filtered.filter(j => j.transparency === 'green');
-  if (filter === 'high') filtered = filtered.filter(j => j.matchScore >= 75);
-  grid.innerHTML = filtered.map(j => jobCardHtml(j)).join('');
+  // Store quick filter in activeFilters meta and re-run
+  activeFilters._quickFilter = filter;
+  applyAllFilters();
 }
 
-function filterFeed() {
-  const q = document.getElementById('search-input').value.toLowerCase();
+function toggleTypeFilter(el, type) {
+  activeFilters.type = activeFilters.type === type ? 'all' : type;
+  renderHome(document.getElementById('main-content'));
+}
+
+function togglePartTimeFilter(el) {
+  activeFilters.partTime = !activeFilters.partTime;
+  renderHome(document.getElementById('main-content'));
+}
+
+function toggleStipendFilter(el) {
+  activeFilters.stipend = !activeFilters.stipend;
+  renderHome(document.getElementById('main-content'));
+}
+
+function toggleDurationDropdown() {
+  const dd = document.getElementById('duration-dropdown');
+  if (!dd) return;
+  dd.classList.toggle('open');
+  // close skills dropdown if open
+  const sd = document.getElementById('skills-dropdown');
+  if (sd) sd.classList.remove('open');
+}
+
+function setDuration(dur) {
+  activeFilters.duration = dur;
+  const dd = document.getElementById('duration-dropdown');
+  if (dd) dd.classList.remove('open');
+  renderHome(document.getElementById('main-content'));
+}
+
+function toggleSkillsDropdown() {
+  const dd = document.getElementById('skills-dropdown');
+  if (!dd) return;
+  dd.classList.toggle('open');
+  // close duration dropdown if open
+  const dur = document.getElementById('duration-dropdown');
+  if (dur) dur.classList.remove('open');
+}
+
+function toggleSkill(skill, checked) {
+  if (checked) {
+    if (!activeFilters.skills.includes(skill)) activeFilters.skills.push(skill);
+  } else {
+    activeFilters.skills = activeFilters.skills.filter(s => s !== skill);
+  }
+  applyAllFilters();
+  // Re-render to refresh the chip label count without closing the dropdown
+  const btn = document.querySelector('#skills-dropdown-wrapper > .filter-chip');
+  if (btn) {
+    const cnt = activeFilters.skills.length;
+    btn.className = 'filter-chip' + (cnt > 0 ? ' active' : '');
+    btn.innerHTML = `<i class="ph ph-code"></i>Skills${cnt>0?' ('+cnt+')':''}<i class="ph ph-caret-down" style="margin-left:2px;font-size:0.7rem;"></i>`;
+    btn.setAttribute('onclick','toggleSkillsDropdown()');
+  }
+  // Also update clear button visibility
+  renderAdvancedFilterClearBtn();
+}
+
+function renderAdvancedFilterClearBtn() {
+  // no-op placeholder — full re-render handles it
+}
+
+function clearSkills() {
+  activeFilters.skills = [];
+  renderHome(document.getElementById('main-content'));
+}
+
+function clearAdvancedFilters() {
+  activeFilters.type = 'all';
+  activeFilters.partTime = false;
+  activeFilters.stipend = false;
+  activeFilters.duration = '';
+  activeFilters.skills = [];
+  renderHome(document.getElementById('main-content'));
+}
+
+function applyAllFilters() {
   const grid = document.getElementById('feed-grid');
   if (!grid) return;
-  const filtered = mockInternships.filter(j =>
-    j.title.toLowerCase().includes(q) || j.company.toLowerCase().includes(q) || j.tags.some(t => t.toLowerCase().includes(q))
-  );
-  grid.innerHTML = filtered.map(j => jobCardHtml(j)).join('');
+  const q = (document.getElementById('search-input')?.value || '').toLowerCase();
+  const qf = activeFilters._quickFilter || 'all';
+  let filtered = mockInternships;
+  // Quick filters
+  if (qf === 'green') filtered = filtered.filter(j => j.transparency === 'green');
+  if (qf === 'high')  filtered = filtered.filter(j => j.matchScore >= 75);
+  // Search
+  if (q) filtered = filtered.filter(j => j.title.toLowerCase().includes(q) || j.company.toLowerCase().includes(q) || j.tags.some(t => t.toLowerCase().includes(q)));
+  // Advanced filters
+  if (activeFilters.type === 'remote')  filtered = filtered.filter(j => j.type === 'remote');
+  if (activeFilters.partTime)           filtered = filtered.filter(j => j.partTime);
+  if (activeFilters.stipend)            filtered = filtered.filter(j => j.stipendAmount > 0);
+  if (activeFilters.duration)           filtered = filtered.filter(j => j.duration === activeFilters.duration);
+  if (activeFilters.skills.length > 0)  filtered = filtered.filter(j => activeFilters.skills.every(sk => j.reqSkills.includes(sk) || j.tags.includes(sk)));
+  grid.innerHTML = filtered.length ? filtered.map(j => jobCardHtml(j)).join('') : '<div class="empty-state"><i class="ph ph-funnel-x"></i><p>No internships match the selected filters.</p><button class="btn-ghost" onclick="clearAdvancedFilters()">Clear Filters</button></div>';
 }
+
+function filterFeed() { applyAllFilters(); }
 
 // ── 2. INTERNSHIP DETAIL ───────────────────────
 function renderDetail(container) {
@@ -332,34 +510,45 @@ function kanbanCardHtml(card) {
 
 // ── 4. SKILL PROFILE ──────────────────────────
 function renderProfile(container) {
-  const missingSkills = ["TypeScript","Machine Learning","Docker","Figma"];
+  const allReqSkills = [...new Set(mockInternships.flatMap(j => j.reqSkills))];
+  const missingSkills = allReqSkills.filter(s => !Object.keys(userProfile.skills).includes(s)).slice(0, 6);
+  const score = userProfile.resumeScore;
+  const offset = 314 - 314 * (score / 100);
+
   container.innerHTML = `
     <div class="page-wrapper fade-in">
       <div class="page-header">
         <div class="page-header-left">
           <h1>Skill Profile 🎯</h1>
-          <p>Your skills, gaps, and resume analysis.</p>
+          <p>${userProfile.name} · ${userProfile.college} · ${userProfile.year}</p>
         </div>
-        <button class="btn-primary"><i class="ph ph-upload-simple"></i>Upload Resume</button>
+        <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+          <button class="btn-outline" onclick="simulateResumeUpload()"><i class="ph ph-upload-simple"></i>Upload Resume</button>
+          <button class="btn-primary" onclick="openProfileModal()"><i class="ph ph-pencil-simple"></i>Edit Profile</button>
+        </div>
       </div>
 
+      <!-- Resume + Analytics Row -->
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem;">
         <div class="card" style="display:flex;gap:1.5rem;align-items:center;">
           <div class="resume-score-ring">
             <svg width="120" height="120" viewBox="0 0 120 120">
               <circle cx="60" cy="60" r="50" fill="none" stroke="var(--border-light)" stroke-width="10"/>
-              <circle cx="60" cy="60" r="50" fill="none" stroke="var(--primary)" stroke-width="10" stroke-dasharray="314" stroke-dashoffset="${314 - 314 * 0.85}" stroke-linecap="round"/>
+              <circle cx="60" cy="60" r="50" fill="none" stroke="var(--primary)" stroke-width="10"
+                stroke-dasharray="314" stroke-dashoffset="${offset}" stroke-linecap="round"
+                id="ats-ring" style="transition:stroke-dashoffset 1s ease;"/>
             </svg>
-            <div class="ring-text"><div class="ring-number">85</div><div class="ring-label">ATS Score</div></div>
+            <div class="ring-text"><div class="ring-number" id="ats-number">${score}</div><div class="ring-label">ATS Score</div></div>
           </div>
           <div>
             <h3 style="margin-bottom:0.5rem;">Resume Analysis</h3>
-            <p style="font-size:0.83rem;color:var(--text-muted);margin-bottom:0.75rem;">Strong profile! A few improvements can boost your score to 95+.</p>
-            <div style="display:flex;flex-direction:column;gap:0.35rem;">
+            <p style="font-size:0.83rem;color:var(--text-muted);margin-bottom:0.75rem;">${score >= 90 ? 'Excellent! Your resume is highly competitive.' : score >= 75 ? 'Strong profile! A few improvements can boost your score to 95+.' : 'Keep improving — add more projects and keywords.'}</p>
+            <div style="display:flex;flex-direction:column;gap:0.35rem;" id="resume-tips">
               <div style="font-size:0.78rem;color:var(--danger-text);"><i class="ph ph-x-circle"></i> Missing: GitHub link</div>
               <div style="font-size:0.78rem;color:var(--danger-text);"><i class="ph ph-x-circle"></i> Add TypeScript projects</div>
               <div style="font-size:0.78rem;color:var(--success);"><i class="ph ph-check-circle"></i> Keywords look great</div>
             </div>
+            <button class="btn-ghost" style="margin-top:0.75rem;font-size:0.78rem;" onclick="simulateResumeUpload()"><i class="ph ph-upload-simple"></i>Re-upload Resume</button>
           </div>
         </div>
 
@@ -372,13 +561,24 @@ function renderProfile(container) {
                 <span class="badge ${c}">${v}</span>
               </div>`).join('')}
           </div>
+          <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border-light);">
+            <div style="font-size:0.78rem;color:var(--text-muted);margin-bottom:0.4rem;">Profile Completeness</div>
+            <div style="background:var(--border-light);border-radius:999px;height:8px;overflow:hidden;">
+              <div style="width:${Math.min(100, 60 + Object.keys(userProfile.skills).length * 4)}%;height:100%;background:linear-gradient(90deg,var(--primary),#818cf8);border-radius:999px;transition:width 0.8s ease;"></div>
+            </div>
+            <div style="font-size:0.72rem;color:var(--primary);font-weight:700;margin-top:0.25rem;">${Math.min(100, 60 + Object.keys(userProfile.skills).length * 4)}% complete</div>
+          </div>
         </div>
       </div>
 
+      <!-- Skills -->
       <div class="card" style="margin-bottom:1.5rem;">
-        <div class="section-title"><i class="ph ph-lightning"></i>Your Skills</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+          <div class="section-title" style="margin-bottom:0;"><i class="ph ph-lightning"></i>Your Skills</div>
+          <button class="btn-ghost" style="font-size:0.78rem;" onclick="openProfileModal()"><i class="ph ph-pencil-simple"></i>Edit Skills</button>
+        </div>
         <div class="skills-grid">
-          ${Object.entries(userSkillLevels).map(([sk, pct]) => `
+          ${Object.entries(userProfile.skills).map(([sk, pct]) => `
             <div class="skill-item">
               <div class="skill-item-top"><span class="skill-name">${sk}</span><span class="skill-pct">${pct}%</span></div>
               <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:${pct}%"></div></div>
@@ -386,19 +586,21 @@ function renderProfile(container) {
         </div>
       </div>
 
+      <!-- Skill Gaps -->
       <div class="card" style="margin-bottom:1.5rem;">
         <div class="section-title"><i class="ph ph-warning"></i>Skill Gaps</div>
         <p style="font-size:0.83rem;color:var(--text-muted);margin-bottom:1rem;">Based on top internship requirements in your field:</p>
         <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
-          ${missingSkills.map(s => `<span class="skill-gap-tag"><i class="ph ph-x"></i>${s}</span>`).join('')}
+          ${missingSkills.length ? missingSkills.map(s => `<span class="skill-gap-tag"><i class="ph ph-x"></i>${s}</span>`).join('') : '<span class="badge green">🎉 No skill gaps found! Great job.</span>'}
         </div>
       </div>
 
+      <!-- Courses -->
       <div class="card">
         <div class="section-title"><i class="ph ph-graduation-cap"></i>Recommended Courses</div>
         <div class="courses-grid">
           ${mockCourses.map(c => `
-            <div class="course-card">
+            <div class="course-card" onclick="this.style.borderColor='var(--primary)'">
               <div class="course-icon">${c.icon}</div>
               <div>
                 <div class="course-title">${c.title}</div>
@@ -409,6 +611,178 @@ function renderProfile(container) {
         </div>
       </div>
     </div>`;
+}
+
+// ── Update Profile Modal ───────────────────────
+function openProfileModal() {
+  // Remove old modal if any
+  const old = document.getElementById('profile-modal');
+  if (old) old.remove();
+
+  const skillRows = Object.entries(userProfile.skills).map(([sk, pct], i) => `
+    <div class="profile-skill-row" id="skill-row-${i}">
+      <input class="form-input" style="flex:1;min-width:100px;" placeholder="Skill name" value="${sk}" id="skill-name-${i}">
+      <input type="range" min="10" max="100" value="${pct}" id="skill-range-${i}"
+        oninput="document.getElementById('skill-val-${i}').textContent=this.value+'%'"
+        style="flex:2;accent-color:var(--primary);cursor:pointer;">
+      <span id="skill-val-${i}" style="min-width:38px;font-weight:700;font-size:0.82rem;color:var(--primary);">${pct}%</span>
+      <button onclick="removeSkillRow(${i})" style="background:none;border:none;cursor:pointer;color:var(--danger-text);font-size:1.1rem;padding:0 4px;"><i class="ph ph-x-circle"></i></button>
+    </div>`).join('');
+
+  const modal = document.createElement('div');
+  modal.id = 'profile-modal';
+  modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.55);backdrop-filter:blur(4px);z-index:1000;display:flex;align-items:center;justify-content:center;padding:1rem;';
+  modal.innerHTML = `
+    <div style="background:var(--bg-card);border-radius:var(--radius-lg);padding:2rem;width:100%;max-width:560px;max-height:90vh;overflow-y:auto;box-shadow:var(--shadow-lg);position:relative;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;">
+        <h2 style="margin:0;">✏️ Update Profile</h2>
+        <button onclick="closeProfileModal()" style="background:none;border:none;cursor:pointer;font-size:1.4rem;color:var(--text-muted);"><i class="ph ph-x"></i></button>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Full Name</label>
+        <input class="form-input" id="edit-name" value="${userProfile.name}">
+      </div>
+      <div class="form-group">
+        <label class="form-label">College / University</label>
+        <input class="form-input" id="edit-college" value="${userProfile.college}">
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+        <div class="form-group">
+          <label class="form-label">Branch</label>
+          <input class="form-input" id="edit-branch" value="${userProfile.branch}">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Year</label>
+          <select class="form-select" id="edit-year">
+            ${['1st Year','2nd Year','3rd Year','4th Year','Graduate'].map(y => `<option ${userProfile.year===y?'selected':''}>${y}</option>`).join('')}
+          </select>
+        </div>
+      </div>
+
+      <div style="margin-bottom:0.5rem;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem;">
+          <label class="form-label" style="margin:0;">Skills & Proficiency</label>
+          <button class="btn-outline" style="font-size:0.78rem;padding:0.35rem 0.75rem;" onclick="addSkillRow()"><i class="ph ph-plus"></i>Add Skill</button>
+        </div>
+        <div id="skill-rows" style="display:flex;flex-direction:column;gap:0.6rem;">${skillRows}</div>
+      </div>
+
+      <div style="display:flex;gap:0.75rem;margin-top:1.5rem;">
+        <button class="btn-ghost" style="flex:1;" onclick="closeProfileModal()">Cancel</button>
+        <button class="btn-primary" style="flex:2;" onclick="saveProfile()"><i class="ph ph-check"></i>Save Profile</button>
+      </div>
+    </div>`;
+
+  // Close on backdrop click
+  modal.addEventListener('click', e => { if (e.target === modal) closeProfileModal(); });
+  document.body.appendChild(modal);
+}
+
+function closeProfileModal() {
+  const m = document.getElementById('profile-modal');
+  if (m) m.remove();
+}
+
+function addSkillRow() {
+  const container = document.getElementById('skill-rows');
+  if (!container) return;
+  const i = Date.now();
+  const row = document.createElement('div');
+  row.className = 'profile-skill-row';
+  row.id = `skill-row-${i}`;
+  row.innerHTML = `
+    <input class="form-input" style="flex:1;min-width:100px;" placeholder="Skill name" id="skill-name-${i}">
+    <input type="range" min="10" max="100" value="50" id="skill-range-${i}"
+      oninput="document.getElementById('skill-val-${i}').textContent=this.value+'%'"
+      style="flex:2;accent-color:var(--primary);cursor:pointer;">
+    <span id="skill-val-${i}" style="min-width:38px;font-weight:700;font-size:0.82rem;color:var(--primary);">50%</span>
+    <button onclick="this.closest('.profile-skill-row').remove()" style="background:none;border:none;cursor:pointer;color:var(--danger-text);font-size:1.1rem;padding:0 4px;"><i class="ph ph-x-circle"></i></button>`;
+  container.appendChild(row);
+  row.querySelector('input.form-input').focus();
+}
+
+function removeSkillRow(i) {
+  const row = document.getElementById(`skill-row-${i}`);
+  if (row) row.remove();
+}
+
+function saveProfile() {
+  const name = document.getElementById('edit-name')?.value.trim();
+  const college = document.getElementById('edit-college')?.value.trim();
+  const branch = document.getElementById('edit-branch')?.value.trim();
+  const year = document.getElementById('edit-year')?.value;
+
+  if (!name) { alert('Please enter your name.'); return; }
+
+  // Collect skill rows
+  const newSkills = {};
+  document.querySelectorAll('#skill-rows .profile-skill-row').forEach(row => {
+    const nameEl = row.querySelector('input.form-input');
+    const rangeEl = row.querySelector('input[type=range]');
+    if (nameEl && rangeEl && nameEl.value.trim()) {
+      newSkills[nameEl.value.trim()] = parseInt(rangeEl.value);
+    }
+  });
+
+  // Update state
+  userProfile.name = name;
+  userProfile.college = college || userProfile.college;
+  userProfile.branch = branch || userProfile.branch;
+  userProfile.year = year || userProfile.year;
+  userProfile.skills = newSkills;
+  userSkills = Object.keys(newSkills);
+  userSkillLevels = newSkills;
+
+  // Recalc resume score based on skill count
+  userProfile.resumeScore = Math.min(99, 70 + Object.keys(newSkills).length * 3);
+
+  closeProfileModal();
+
+  // Update sidebar user info
+  const nameEl = document.querySelector('.user-name');
+  const collegeEl = document.querySelector('.user-college');
+  const avatarEl = document.querySelector('.avatar');
+  if (nameEl) nameEl.textContent = userProfile.name;
+  if (collegeEl) collegeEl.textContent = userProfile.college;
+  if (avatarEl) avatarEl.textContent = userProfile.name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+
+  // Show success toast
+  showToast('✅ Profile updated successfully!');
+
+  // Re-render if on profile page
+  const activeRoute = document.querySelector('.nav-link.active')?.getAttribute('data-route');
+  if (activeRoute === 'profile') navigate('profile');
+}
+
+function simulateResumeUpload() {
+  // Create temp file input
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = '.pdf,.doc,.docx';
+  input.onchange = () => {
+    if (!input.files.length) return;
+    const file = input.files[0];
+    showToast(`📄 Analyzing "${file.name}"…`);
+    setTimeout(() => {
+      userProfile.resumeScore = Math.min(99, userProfile.resumeScore + Math.floor(Math.random() * 8 + 3));
+      showToast(`✅ Resume analyzed! New ATS Score: ${userProfile.resumeScore}`);
+      const activeRoute = document.querySelector('.nav-link.active')?.getAttribute('data-route');
+      if (activeRoute === 'profile') navigate('profile');
+    }, 2000);
+  };
+  input.click();
+}
+
+function showToast(msg) {
+  const old = document.getElementById('app-toast');
+  if (old) old.remove();
+  const toast = document.createElement('div');
+  toast.id = 'app-toast';
+  toast.textContent = msg;
+  toast.style.cssText = 'position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);background:var(--primary);color:white;padding:0.75rem 1.5rem;border-radius:var(--radius-sm);font-weight:600;font-size:0.875rem;z-index:9999;box-shadow:var(--shadow-lg);animation:toastIn 0.3s ease;white-space:nowrap;';
+  document.body.appendChild(toast);
+  setTimeout(() => { toast.style.transition = 'opacity 0.4s'; toast.style.opacity = '0'; setTimeout(() => toast.remove(), 400); }, 3000);
 }
 
 // ── 5. COMPANY PROFILE ────────────────────────
@@ -708,3 +1082,17 @@ function renderPrepRoadmap() {
 
 // Boot
 document.addEventListener('DOMContentLoaded', initApp);
+
+// Toast animation keyframes (injected once)
+(function injectStyles() {
+  const s = document.createElement('style');
+  s.textContent = `
+    @keyframes toastIn { from { opacity:0; transform:translateX(-50%) translateY(12px); } to { opacity:1; transform:translateX(-50%) translateY(0); } }
+    .profile-skill-row { display:flex; align-items:center; gap:0.5rem; }
+    .form-group { margin-bottom:0.85rem; }
+    .form-label { display:block; font-size:0.8rem; font-weight:600; color:var(--text-muted); margin-bottom:0.35rem; }
+    .form-input, .form-select { width:100%; padding:0.6rem 0.85rem; border:1.5px solid var(--border); border-radius:var(--radius-sm); font-family:inherit; font-size:0.875rem; background:var(--bg-main); color:var(--text-main); transition:border-color 0.2s; }
+    .form-input:focus, .form-select:focus { outline:none; border-color:var(--primary); box-shadow:0 0 0 3px var(--primary-glow); }
+  `;
+  document.head.appendChild(s);
+})();
