@@ -1,120 +1,419 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InternBridge | Discover, Track & Land Internships</title>
-    <meta name="description"
-        content="InternBridge – AI-powered internship discovery platform with transparency scores, skill matching, and application tracking for students.">
+    <title>InternBridge | Land Your Dream Internship</title>
+    <meta name="description" content="A professional career platform for students and young professionals to discover and apply for top internships.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link rel="stylesheet" href="styles.css?v=2">
+    <link rel="stylesheet" href="landing.css">
     <link rel="icon" type="image/png" href="logo.png">
 </head>
-
 <body>
-    <div class="app-container">
-        <!-- Sidebar Navigation (Desktop) -->
-        <nav class="sidebar glass-panel" id="sidebar">
-            <div class="brand">
-                <img src="logo.png" alt="InternBridge Logo" class="brand-logo">
-                <div>
-                    <h2 class="brand-name">InternBridge</h2>
-                    <p class="brand-tagline">Your Career Launchpad</p>
+
+    <!-- Sticky Navbar -->
+    <header class="site-header" id="navbar">
+        <div class="container nav-container">
+            <div class="nav-brand">
+                <i class="ph-fill ph-bridge brand-icon"></i>
+                <span class="brand-text">InternBridge</span>
+            </div>
+            
+            <nav class="nav-links">
+                <a href="#internships">Internships</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#companies">Companies</a>
+                <a href="#testimonials">Success Stories</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="index.html" class="btn btn-outline">Log In</a>
+                <a href="index.html" class="btn btn-primary">Sign Up</a>
+            </div>
+            
+            <button class="mobile-menu-btn" aria-label="Toggle Menu">
+                <i class="ph ph-list"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-bg-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+        </div>
+        <div class="container hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">🚀 Empowering 50k+ Students Monthly</div>
+                <h1 class="hero-title">Land Your Dream <span>Internship</span> Faster</h1>
+                <p class="hero-subtitle">The most trusted platform for students and early-career professionals. Discover premium opportunities, build your resume, and track your applications in one unified workspace.</p>
+                <div class="hero-ctas">
+                    <a href="#internships" class="btn btn-primary btn-lg">Browse Internships</a>
+                    <a href="#" class="btn btn-outline btn-lg">Post a Job</a>
+                </div>
+                <div class="hero-trust">
+                    <p>Trusted by HR teams at</p>
+                    <div class="trust-logos">
+                        <span>Google</span>
+                        <span>Amazon</span>
+                        <span>Microsoft</span>
+                        <span>Deloitte</span>
+                    </div>
                 </div>
             </div>
-
-            <div class="user-pill">
-                <img src="profile.jpg" alt="Aditya Chauhan" class="avatar">
-                <div>
-                    <div class="user-name">Aditya Chauhan</div>
-                    <div class="user-college">NIET Business School</div>
-                </div>
-            </div>
-
-            <ul class="nav-links" id="nav-links">
-                <li class="nav-link active" data-route="home" id="nav-home">
-                    <i class="ph ph-house-simple"></i><span>Discovery Feed</span>
-                </li>
-                <li class="nav-link" data-route="detail" id="nav-detail" style="display:none;">
-                    <i class="ph ph-article"></i><span>Internship Detail</span>
-                </li>
-                <li class="nav-link" data-route="tracker" id="nav-tracker">
-                    <i class="ph ph-kanban"></i><span>App Tracker</span>
-                    <span class="nav-badge">3</span>
-                </li>
-                <li class="nav-link" data-route="profile" id="nav-profile">
-                    <i class="ph ph-user-circle"></i><span>Skill Profile</span>
-                </li>
-                <li class="nav-link" data-route="company" id="nav-company" style="display:none;">
-                    <i class="ph ph-buildings"></i><span>Company Profile</span>
-                </li>
-                <li class="nav-link" data-route="senior" id="nav-senior">
-                    <i class="ph ph-users-three"></i><span>Senior Connect</span>
-                </li>
-                <li class="nav-link" data-route="ghost" id="nav-ghost">
-                    <i class="ph ph-ghost"></i><span>Ghost Report</span>
-                    <span class="nav-badge danger">!</span>
-                </li>
-                <li class="nav-link" data-route="prep" id="nav-prep">
-                    <i class="ph ph-books"></i><span>Prep Hub</span>
-                </li>
-            </ul>
-
-            <div class="sidebar-footer">
-                <div class="leaderboard-pill">
-                    <i class="ph-fill ph-trophy"></i>
-                    <span>#4 in NIET</span>
-                </div>
-                <div class="theme-toggle-row">
-                    <label class="theme-toggle-label" for="theme-toggle">
-                        <i class="ph ph-moon" id="theme-icon"></i>
-                        <span id="theme-label">Dark Mode</span>
-                    </label>
-                    <label class="toggle-switch">
-                        <input type="checkbox" id="theme-toggle">
-                        <span class="toggle-track"></span>
-                    </label>
-                </div>
-            </div>
-        </nav>
-
-        <!-- Main Content -->
-        <main class="content-area" id="main-content"></main>
-
-        <!-- Mobile Bottom Nav -->
-        <nav class="bottom-nav glass-panel">
-            <div class="nav-item active" data-route="home"><i class="ph ph-house-simple"></i><span>Feed</span></div>
-            <div class="nav-item" data-route="tracker"><i class="ph ph-kanban"></i><span>Tracker</span></div>
-            <div class="nav-item" data-route="profile"><i class="ph ph-user-circle"></i><span>Profile</span></div>
-            <div class="nav-item" data-route="senior"><i class="ph ph-users-three"></i><span>Connect</span></div>
-            <div class="nav-item" data-route="prep"><i class="ph ph-books"></i><span>Prep</span></div>
-        </nav>
-    </div>
-
-    <!-- Apply Modal -->
-    <div id="apply-modal" class="modal-overlay" style="display:none;">
-        <div class="modal glass-panel">
-            <div class="modal-header">
-                <h2 id="modal-title">Apply to Internship</h2>
-                <button class="modal-close" id="modal-close-btn"><i class="ph ph-x"></i></button>
-            </div>
-            <div class="modal-body">
-                <div class="success-animation">
-                    <div class="success-icon">✓</div>
-                    <h3>Application Submitted!</h3>
-                    <p class="text-muted">Your application has been sent. The 21-day ghosting timer starts now.</p>
-                    <div class="timer-pill"><i class="ph ph-timer"></i> Timer starts: Day 1 of 21</div>
-                    <button class="btn-primary" id="go-tracker-btn" style="margin-top:1.5rem;width:100%;">View in
-                        Tracker <i class="ph ph-arrow-right"></i></button>
+            <div class="hero-image-wrapper">
+                <div class="hero-image-card">
+                    <div class="mockup-header">
+                        <div class="mockup-dots"><span></span><span></span><span></span></div>
+                    </div>
+                    <div class="mockup-body">
+                        <div class="mockup-profile">
+                            <div class="mockup-avatar"></div>
+                            <div class="mockup-lines">
+                                <div class="line w-70"></div>
+                                <div class="line w-40"></div>
+                            </div>
+                        </div>
+                        <div class="mockup-match-score">
+                            <span class="score-num">95%</span>
+                            <span class="score-text">Match</span>
+                        </div>
+                        <div class="mockup-job">
+                            <div class="m-job-icon">G</div>
+                            <div class="m-job-details">
+                                <div class="line w-80"></div>
+                                <div class="line w-50"></div>
+                            </div>
+                        </div>
+                        <div class="mockup-apply-btn">Apply Now</div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <script src="script.js"></script>
+    <!-- Stats Bar -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="15000">0</div>
+                    <div class="stat-label">Active Listings</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="850">0</div>
+                    <div class="stat-label">Verified Companies</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="92">0</div>
+                    <div class="stat-label">Placement Rate (%)</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="24">0</div>
+                    <div class="stat-label">Hr Avg. Response</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works-section" id="how-it-works">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title">Your Path to Success</h2>
+                <p class="section-subtitle">A streamlined, transparent process designed to get you hired faster.</p>
+            </div>
+
+            <div class="timeline-container">
+                <div class="timeline-step">
+                    <div class="step-icon"><i class="ph ph-magnifying-glass"></i></div>
+                    <h3 class="step-title">1. Discover & Match</h3>
+                    <p class="step-desc">Our AI matches your skill profile with high-quality, verified internships.</p>
+                </div>
+                <div class="step-connector"></div>
+                <div class="timeline-step">
+                    <div class="step-icon"><i class="ph ph-file-text"></i></div>
+                    <h3 class="step-title">2. Apply seamlessly</h3>
+                    <p class="step-desc">Use our ATS-optimized resume builder and one-click application system.</p>
+                </div>
+                <div class="step-connector"></div>
+                <div class="timeline-step">
+                    <div class="step-icon"><i class="ph ph-briefcase"></i></div>
+                    <h3 class="step-title">3. Get Hired</h3>
+                    <p class="step-desc">Track your progress and communicate directly with recruiters to secure the offer.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Internships -->
+    <section class="featured-section" id="internships">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Trending Opportunities</h2>
+                <p class="section-subtitle">Explore hand-picked roles from top-tier companies actively hiring.</p>
+            </div>
+
+            <div class="jobs-layout">
+                <!-- Filter Sidebar -->
+                <aside class="filter-sidebar">
+                    <div class="filter-card">
+                        <h3 class="filter-title">Filters</h3>
+                        
+                        <div class="filter-group">
+                            <label>Location Type</label>
+                            <label class="custom-checkbox"><input type="checkbox"> <span>Remote</span></label>
+                            <label class="custom-checkbox"><input type="checkbox"> <span>On-site</span></label>
+                            <label class="custom-checkbox"><input type="checkbox"> <span>Hybrid</span></label>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label>Domain</label>
+                            <select class="form-select">
+                                <option>Software Engineering</option>
+                                <option>Data Science</option>
+                                <option>Product Management</option>
+                                <option>Marketing</option>
+                                <option>Design</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label>Stipend</label>
+                            <label class="custom-checkbox"><input type="checkbox" checked> <span>Paid only</span></label>
+                        </div>
+
+                        <button class="btn btn-outline" style="width:100%">Clear Filters</button>
+                    </div>
+                </aside>
+
+                <!-- Jobs Grid -->
+                <div class="jobs-grid">
+                    <!-- Job Card 1 -->
+                    <div class="job-card">
+                        <div class="job-card-header">
+                            <div class="company-brand">
+                                <div class="c-logo" style="background:#EBF5FF; color:#0A66C2">S</div>
+                                <div>
+                                    <div class="c-name">Stripe</div>
+                                    <div class="c-rating">★ 4.8</div>
+                                </div>
+                            </div>
+                            <button class="btn-icon"><i class="ph ph-bookmark"></i></button>
+                        </div>
+                        <h3 class="j-title">Frontend Engineer Intern</h3>
+                        <div class="j-meta">
+                            <span><i class="ph ph-map-pin"></i> Remote</span>
+                            <span><i class="ph ph-clock"></i> 3 Months</span>
+                        </div>
+                        <div class="j-tags">
+                            <span class="badge badge-accent">Paid</span>
+                            <span class="badge badge-gray">React</span>
+                            <span class="badge badge-gray">TypeScript</span>
+                        </div>
+                        <div class="job-card-footer">
+                            <div class="j-stipend">$4,000/mo</div>
+                            <button class="btn btn-primary" onclick="window.location.href='index.html'">Apply Now</button>
+                        </div>
+                    </div>
+
+                    <!-- Job Card 2 -->
+                    <div class="job-card">
+                        <div class="job-card-header">
+                            <div class="company-brand">
+                                <div class="c-logo" style="background:#FFF1F2; color:#E11D48">A</div>
+                                <div>
+                                    <div class="c-name">Atlassian</div>
+                                    <div class="c-rating">★ 4.6</div>
+                                </div>
+                            </div>
+                            <button class="btn-icon"><i class="ph ph-bookmark"></i></button>
+                        </div>
+                        <h3 class="j-title">Product Design Intern</h3>
+                        <div class="j-meta">
+                            <span><i class="ph ph-map-pin"></i> Hybrid, SF</span>
+                            <span><i class="ph ph-clock"></i> 4 Months</span>
+                        </div>
+                        <div class="j-tags">
+                            <span class="badge badge-accent">Paid</span>
+                            <span class="badge badge-gray">Figma</span>
+                            <span class="badge badge-gray">Research</span>
+                        </div>
+                        <div class="job-card-footer">
+                            <div class="j-stipend">$3,500/mo</div>
+                            <button class="btn btn-primary" onclick="window.location.href='index.html'">Apply Now</button>
+                        </div>
+                    </div>
+
+                    <!-- Job Card 3 -->
+                    <div class="job-card">
+                        <div class="job-card-header">
+                            <div class="company-brand">
+                                <div class="c-logo" style="background:#F0FDF4; color:#16A34A">M</div>
+                                <div>
+                                    <div class="c-name">MongoDB</div>
+                                    <div class="c-rating">★ 4.7</div>
+                                </div>
+                            </div>
+                            <button class="btn-icon"><i class="ph ph-bookmark"></i></button>
+                        </div>
+                        <h3 class="j-title">Backend Developer Intern</h3>
+                        <div class="j-meta">
+                            <span><i class="ph ph-map-pin"></i> New York, NY</span>
+                            <span><i class="ph ph-clock"></i> 6 Months</span>
+                        </div>
+                        <div class="j-tags">
+                            <span class="badge badge-accent">Paid</span>
+                            <span class="badge badge-gray">Node.js</span>
+                            <span class="badge badge-gray">Go</span>
+                        </div>
+                        <div class="job-card-footer">
+                            <div class="j-stipend">$4,200/mo</div>
+                            <button class="btn btn-primary" onclick="window.location.href='index.html'">Apply Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center" style="margin-top: 2rem;">
+                <a href="index.html" class="btn btn-outline btn-lg">View All Internships</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Top Companies Carousel -->
+    <section class="companies-section" id="companies">
+        <div class="container text-center">
+            <h3 class="companies-title">Hiring Partners Who Trust Us</h3>
+            <div class="companies-carousel">
+                <div class="c-logo-item">Microsoft</div>
+                <div class="c-logo-item">Google</div>
+                <div class="c-logo-item">Netflix</div>
+                <div class="c-logo-item">Spotify</div>
+                <div class="c-logo-item">Airbnb</div>
+                <div class="c-logo-item">Adobe</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials-section" id="testimonials">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title">Success Stories</h2>
+                <p class="section-subtitle">Join thousands of students who found their start here.</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="quote-icon"><i class="ph-fill ph-quotes"></i></div>
+                    <p class="t-text">"InternBridge made the discovery process incredibly smooth. Instead of applying to 100 random jobs, I focused on high-match roles and landed an offer at a top fintech firm within weeks."</p>
+                    <div class="t-author">
+                        <div class="t-avatar" style="background:#DBEAFE; color:#1E3A8A">SJ</div>
+                        <div>
+                            <div class="t-name">Sarah Jenkins</div>
+                            <div class="t-role">SWE Intern @ Stripe</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="quote-icon"><i class="ph-fill ph-quotes"></i></div>
+                    <p class="t-text">"The ATS resume builder highlighted exactly what I was missing. Once I fixed my skill gaps using their prep hub, my interview rate tripled. The transparency scores are a game changer."</p>
+                    <div class="t-author">
+                        <div class="t-avatar" style="background:#D1FAE5; color:#065F46">AK</div>
+                        <div>
+                            <div class="t-name">Arjun Kumar</div>
+                            <div class="t-role">Data Intern @ MongoDB</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Builder CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-card">
+                <div class="cta-content">
+                    <h2>Stop guessing if your resume is good enough.</h2>
+                    <p>Use our AI-powered resume analyzer to score your CV, pinpoint missing keywords, and automatically format it to pass ATS systems.</p>
+                    <ul class="cta-list">
+                        <li><i class="ph-fill ph-check-circle"></i> Instant ATS Score</li>
+                        <li><i class="ph-fill ph-check-circle"></i> Skill Gap Analysis</li>
+                        <li><i class="ph-fill ph-check-circle"></i> Best-practice Templates</li>
+                    </ul>
+                    <a href="index.html" class="btn btn-primary btn-lg">Build Your Resume Free</a>
+                </div>
+                <div class="cta-visual">
+                    <div class="floating-doc">
+                        <div class="doc-header"></div>
+                        <div class="doc-line"></div>
+                        <div class="doc-line w-80"></div>
+                        <div class="doc-line w-60"></div>
+                        <div class="doc-score">ATS Score: 98/100</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand-col">
+                    <div class="nav-brand" style="color: white">
+                        <i class="ph-fill ph-bridge brand-icon" style="color: var(--accent)"></i>
+                        <span class="brand-text">InternBridge</span>
+                    </div>
+                    <p class="footer-text">Empowering the next generation of professionals to build meaningful careers.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="ph-fill ph-linkedin-logo"></i></a>
+                        <a href="#"><i class="ph-fill ph-twitter-logo"></i></a>
+                        <a href="#"><i class="ph-fill ph-instagram-logo"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Platform</h4>
+                    <a href="#">Browse Jobs</a>
+                    <a href="#">Companies</a>
+                    <a href="#">Resume Builder</a>
+                    <a href="#">Prep Hub</a>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <a href="#">About Us</a>
+                    <a href="#">Careers</a>
+                    <a href="#">Blog</a>
+                    <a href="#">Contact</a>
+                </div>
+
+                <div class="footer-newsletter">
+                    <h4>Stay Updated</h4>
+                    <p>Get the latest internships sent directly to your inbox.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 InternBridge Inc. All rights reserved.</p>
+                <div class="bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="landing.js"></script>
 </body>
-
 </html>
