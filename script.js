@@ -9,15 +9,19 @@ const mockInternships = [
   { id:3, title:"UX Design Intern", company:"Creativ", logo:"CR", transparency:"red", matchScore:45, urgencyDays:14, tags:["Figma","UI/UX","On-site"], reqSkills:["Figma","User Research","Prototyping","Sketch"], stipend:"Unpaid", stipendAmount:0, location:"On-site – Mumbai", type:"onsite", partTime:false, duration:"6 months", probability:30, scamReports:15, responseRate:22, jd:"Design user interfaces and conduct usability testing. Create wireframes, prototypes, and design specs for mobile and web applications.", graduates:40, openings:2 },
   { id:4, title:"Backend Engineer Intern", company:"CloudBase", logo:"CB", transparency:"green", matchScore:85, urgencyDays:7, tags:["Node.js","MongoDB","Remote"], reqSkills:["Node.js","REST APIs","MongoDB","Docker"], stipend:"₹22,000/mo", stipendAmount:22000, location:"Remote", type:"remote", partTime:false, duration:"3 months", probability:81, scamReports:0, responseRate:88, jd:"Design and build scalable REST APIs. Work on microservices architecture and cloud deployments using AWS and Docker. Code review participation.", graduates:95, openings:4 },
   { id:5, title:"AI/ML Research Intern", company:"NeuraLabs", logo:"NL", transparency:"green", matchScore:70, urgencyDays:10, tags:["Python","Deep Learning","Remote"], reqSkills:["Python","TensorFlow","Research Writing","Linear Algebra"], stipend:"₹30,000/mo", stipendAmount:30000, location:"Remote", type:"remote", partTime:true, duration:"4 months", probability:72, scamReports:0, responseRate:91, jd:"Assist senior researchers in building and evaluating deep learning models. Contribute to published research papers and open-source ML projects.", graduates:55, openings:2 },
-  { id:6, title:"Product Management Intern", company:"Startify", logo:"ST", transparency:"yellow", matchScore:60, urgencyDays:3, tags:["Strategy","Agile","Hybrid"], reqSkills:["Product Roadmap","Agile","Data Analysis","Communication"], stipend:"₹15,000/mo", stipendAmount:15000, location:"Hybrid – Pune", type:"hybrid", partTime:true, duration:"2 months", probability:55, scamReports:4, responseRate:47, jd:"Own the product roadmap for a key feature area. Work closely with engineering, design, and marketing. Conduct user interviews and analyse product metrics.", graduates:30, openings:1 }
+  { id:6, title:"Product Management Intern", company:"Startify", logo:"ST", transparency:"yellow", matchScore:60, urgencyDays:3, tags:["Strategy","Agile","Hybrid"], reqSkills:["Product Roadmap","Agile","Data Analysis","Communication"], stipend:"₹15,000/mo", stipendAmount:15000, location:"Hybrid – Pune", type:"hybrid", partTime:true, duration:"2 months", probability:55, scamReports:4, responseRate:47, jd:"Own the product roadmap for a key feature area. Work closely with engineering, design, and marketing. Conduct user interviews and analyse product metrics.", graduates:30, openings:1 },
+  { id:7, title:"Marketing Intern", company:"TrendSetter", logo:"TS", transparency:"green", matchScore:75, urgencyDays:8, tags:["SEO","Content","Remote"], reqSkills:["Digital Marketing","SEO","Copywriting","Analytics"], stipend:"₹12,000/mo", stipendAmount:12000, location:"Remote", type:"remote", partTime:true, duration:"3 months", probability:88, scamReports:0, responseRate:95, jd:"Assist in creating and managing content strategies. Optimize website content for SEO. Track marketing metrics and KPIs.", graduates:45, openings:2 },
+  { id:8, title:"UI/UX Designer", company:"PixelPerfect", logo:"PP", transparency:"green", matchScore:82, urgencyDays:4, tags:["Design","Figma","Hybrid"], reqSkills:["Figma","Wireframing","Prototyping","Adobe XD"], stipend:"₹20,000/mo", stipendAmount:20000, location:"Hybrid – Chennai", type:"hybrid", partTime:false, duration:"6 months", probability:78, scamReports:0, responseRate:85, jd:"Create intuitive user experiences for an upcoming FinTech app. Design wireframes, high-fidelity mockups, and interactive prototypes.", graduates:65, openings:4 },
+  { id:9, title:"Software Engineering Intern", company:"GlobalTech", logo:"GT", transparency:"yellow", matchScore:68, urgencyDays:12, tags:["Java","Spring Boot","On-site"], reqSkills:["Java","Spring Boot","SQL","Git"], stipend:"₹28,000/mo", stipendAmount:28000, location:"On-site – Delhi", type:"onsite", partTime:false, duration:"3 months", probability:61, scamReports:1, responseRate:60, jd:"Work on core backend systems. Implement microservices and optimize database queries for high traffic APIs.", graduates:150, openings:6 },
+  { id:10, title:"Cybersecurity Intern", company:"SecureNet", logo:"SN", transparency:"green", matchScore:72, urgencyDays:6, tags:["Security","Networking","Remote"], reqSkills:["Network Security","Linux","Wireshark","Python"], stipend:"₹25,000/mo", stipendAmount:25000, location:"Remote", type:"remote", partTime:false, duration:"4 months", probability:70, scamReports:0, responseRate:90, jd:"Monitor network traffic for vulnerabilities. Assist in penetration testing and write security incidence reports.", graduates:40, openings:2 }
 ];
 
 // Mutable user profile state
 let userProfile = {
   name: "Aditya Chauhan",
   college: "NIET Business School",
-  branch: "B.Tech CSE",
-  year: "3rd Year",
+  branch: "B.Tech biotech",
+  year: "1st Year",
   resumeScore: 85,
   skills: { React:80, JavaScript:90, CSS:75, Python:60, SQL:55, Git:85 }
 };
@@ -89,7 +93,9 @@ function initApp() {
   });
 
   navigate('home');
+  initTheme();
 }
+
 
 function navigate(route, extra = null) {
   document.querySelectorAll('[data-route]').forEach(el => el.classList.remove('active'));
@@ -1083,7 +1089,6 @@ function renderPrepRoadmap() {
 // Boot
 document.addEventListener('DOMContentLoaded', initApp);
 
-// Toast animation keyframes (injected once)
 (function injectStyles() {
   const s = document.createElement('style');
   s.textContent = `
@@ -1096,3 +1101,29 @@ document.addEventListener('DOMContentLoaded', initApp);
   `;
   document.head.appendChild(s);
 })();
+
+// ── Dark Mode Toggle ──────────────────────────
+function initTheme() {
+  const saved = localStorage.getItem('ib-theme');
+  const isDark = saved === 'dark';
+  applyTheme(isDark);
+
+  const toggle = document.getElementById('theme-toggle');
+  if (toggle) {
+    toggle.checked = isDark;
+    toggle.addEventListener('change', () => {
+      applyTheme(toggle.checked);
+      localStorage.setItem('ib-theme', toggle.checked ? 'dark' : 'light');
+    });
+  }
+}
+
+function applyTheme(dark) {
+  document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+  const icon = document.getElementById('theme-icon');
+  const label = document.getElementById('theme-label');
+  const toggle = document.getElementById('theme-toggle');
+  if (icon)  icon.className  = dark ? 'ph ph-sun' : 'ph ph-moon';
+  if (label) label.textContent = dark ? 'Light Mode' : 'Dark Mode';
+  if (toggle) toggle.checked  = dark;
+}

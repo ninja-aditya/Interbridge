@@ -9,10 +9,8 @@
         content="InternBridge – AI-powered internship discovery platform with transparency scores, skill matching, and application tracking for students.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=2">
     <link rel="icon" type="image/png" href="logo.png">
 </head>
 
@@ -29,7 +27,7 @@
             </div>
 
             <div class="user-pill">
-                <div class="avatar">AC</div>
+                <img src="profile.jpg" alt="Aditya Chauhan" class="avatar">
                 <div>
                     <div class="user-name">Aditya Chauhan</div>
                     <div class="user-college">NIET Business School</div>
@@ -69,6 +67,16 @@
                 <div class="leaderboard-pill">
                     <i class="ph-fill ph-trophy"></i>
                     <span>#4 in NIET</span>
+                </div>
+                <div class="theme-toggle-row">
+                    <label class="theme-toggle-label" for="theme-toggle">
+                        <i class="ph ph-moon" id="theme-icon"></i>
+                        <span id="theme-label">Dark Mode</span>
+                    </label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="theme-toggle">
+                        <span class="toggle-track"></span>
+                    </label>
                 </div>
             </div>
         </nav>
