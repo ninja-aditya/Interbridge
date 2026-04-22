@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InternBridge | Discover, Track & Land Internships</title>
+    <meta name="description"
+        content="InternBridge – AI-powered internship discovery platform with transparency scores, skill matching, and application tracking for students.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="styles.css?v=2">
+    <link rel="icon" type="image/png" href="logo.png">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation (Desktop) -->
+        <nav class="sidebar glass-panel" id="sidebar">
+            <div class="brand">
+                <img src="logo.png" alt="InternBridge Logo" class="brand-logo">
+                <div>
+                    <h2 class="brand-name">InternBridge</h2>
+                    <p class="brand-tagline">Your Career Launchpad</p>
+                </div>
+            </div>
+
+            <div class="user-pill">
+                <img src="profile.jpg" alt="Aditya Chauhan" class="avatar">
+                <div>
+                    <div class="user-name">Aditya Chauhan</div>
+                    <div class="user-college">NIET Business School</div>
+                </div>
+            </div>
+
+            <ul class="nav-links" id="nav-links">
+                <li class="nav-link active" data-route="home" id="nav-home">
+                    <i class="ph ph-house-simple"></i><span>Discovery Feed</span>
+                </li>
+                <li class="nav-link" data-route="detail" id="nav-detail" style="display:none;">
+                    <i class="ph ph-article"></i><span>Internship Detail</span>
+                </li>
+                <li class="nav-link" data-route="tracker" id="nav-tracker">
+                    <i class="ph ph-kanban"></i><span>App Tracker</span>
+                    <span class="nav-badge">3</span>
+                </li>
+                <li class="nav-link" data-route="profile" id="nav-profile">
+                    <i class="ph ph-user-circle"></i><span>Skill Profile</span>
+                </li>
+                <li class="nav-link" data-route="company" id="nav-company" style="display:none;">
+                    <i class="ph ph-buildings"></i><span>Company Profile</span>
+                </li>
+                <li class="nav-link" data-route="senior" id="nav-senior">
+                    <i class="ph ph-users-three"></i><span>Senior Connect</span>
+                </li>
+                <li class="nav-link" data-route="ghost" id="nav-ghost">
+                    <i class="ph ph-ghost"></i><span>Ghost Report</span>
+                    <span class="nav-badge danger">!</span>
+                </li>
+                <li class="nav-link" data-route="prep" id="nav-prep">
+                    <i class="ph ph-books"></i><span>Prep Hub</span>
+                </li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <div class="leaderboard-pill">
+                    <i class="ph-fill ph-trophy"></i>
+                    <span>#4 in NIET</span>
+                </div>
+                <div class="theme-toggle-row">
+                    <label class="theme-toggle-label" for="theme-toggle">
+                        <i class="ph ph-moon" id="theme-icon"></i>
+                        <span id="theme-label">Dark Mode</span>
+                    </label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="theme-toggle">
+                        <span class="toggle-track"></span>
+                    </label>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="content-area" id="main-content"></main>
+
+        <!-- Mobile Bottom Nav -->
+        <nav class="bottom-nav glass-panel">
+            <div class="nav-item active" data-route="home"><i class="ph ph-house-simple"></i><span>Feed</span></div>
+            <div class="nav-item" data-route="tracker"><i class="ph ph-kanban"></i><span>Tracker</span></div>
+            <div class="nav-item" data-route="profile"><i class="ph ph-user-circle"></i><span>Profile</span></div>
+            <div class="nav-item" data-route="senior"><i class="ph ph-users-three"></i><span>Connect</span></div>
+            <div class="nav-item" data-route="prep"><i class="ph ph-books"></i><span>Prep</span></div>
+        </nav>
+    </div>
+
+    <!-- Apply Modal -->
+    <div id="apply-modal" class="modal-overlay" style="display:none;">
+        <div class="modal glass-panel">
+            <div class="modal-header">
+                <h2 id="modal-title">Apply to Internship</h2>
+                <button class="modal-close" id="modal-close-btn"><i class="ph ph-x"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="success-animation">
+                    <div class="success-icon">✓</div>
+                    <h3>Application Submitted!</h3>
+                    <p class="text-muted">Your application has been sent. The 21-day ghosting timer starts now.</p>
+                    <div class="timer-pill"><i class="ph ph-timer"></i> Timer starts: Day 1 of 21</div>
+                    <button class="btn-primary" id="go-tracker-btn" style="margin-top:1.5rem;width:100%;">View in
+                        Tracker <i class="ph ph-arrow-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
